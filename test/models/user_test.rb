@@ -10,7 +10,7 @@
 #  description                     :string
 #  company                         :string
 #  location                        :string
-#  role                            :string
+#  role                            :string           default("user")
 #  created_at                      :datetime
 #  updated_at                      :datetime
 #  activation_state                :string

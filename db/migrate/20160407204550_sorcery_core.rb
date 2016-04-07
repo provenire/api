@@ -10,7 +10,7 @@ class SorceryCore < ActiveRecord::Migration
       t.string :description
       t.string :company
       t.string :location
-      t.string :role
+      t.string :role, default: 'user'
 
       t.timestamps
     end
