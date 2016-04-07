@@ -11,6 +11,10 @@ gem 'puma'
 gem 'jsonapi-resources'
 
 
+# Authentication
+gem 'sorcery'
+
+
 # Docs
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -31,6 +35,7 @@ group :development do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'annotate'
 end
 
 
