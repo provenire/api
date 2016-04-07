@@ -37,7 +37,70 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should not create when email, name not present" do
+    user = FactoryGirl.build(:user, name: nil)
+    assert_not user.save
+
+    user = FactoryGirl.build(:user, email: nil)
+    assert_not user.save
+  end
+
+  test "should not save when email not unique" do
+    user = FactoryGirl.build(:user, email: "generic@email.com")
+    assert user.save
+
+    user2 = FactoryGirl.build(:user, email: "generic@email.com")
+    assert_not user2.save
+  end
+
+  test "should setup_activation on create" do
+    user = FactoryGirl.create(:user)
+    assert_equal '', user.name
+  end
+
+  test "#admin? should return true if user is admin" do
+    user = FactoryGirl.create(:user, role: "admin")
+    assert user.admin?
+  end
+
+  test "#reactivate_account! should return false if user not disabled" do
+    user = FactoryGirl.create(:user)
+    assert_not user.reactivate_account!
+  end
+
+  test "#reactivate_account! should run setup_activation on disabled user" do
+    user = FactoryGirl.create(:user)
+    user.activation_state = 'disabled'
+    user.activation_token = nil
+    user.name = "TEST"
+    user.save
+
+    user.reactivate_account!
+    assert user.activation_token
+  end
+
+  test "creating user should send activation mailer" do
+    user = FactoryGirl.create(:user)
+    email = ActionMailer::Base.deliveries.last
+
+    assert_equal "You have been invited to join Antiquarium", email.subject
+    assert_equal [user.email], email.to
+    assert_match /\/register\?token=#{user.activation_token}/, email.text_part.to_s
+  end
+
+  test "reactivating user should send reactivation email" do
+    user = FactoryGirl.create(:user)
+    user.activation_state = 'disabled'
+    user.activation_token = nil
+    user.name = "TEST"
+    user.save
+
+    user.reactivate_account!
+
+    email = ActionMailer::Base.deliveries.last
+
+    assert_equal "Your Antiquarium account has been reactivated", email.subject
+    assert_equal [user.email], email.to
+    assert_match /\/register\?token=#{user.activation_token}/, email.text_part.to_s
+  end
 end

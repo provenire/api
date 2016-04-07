@@ -40,13 +40,9 @@ class User < ActiveRecord::Base
 
   # Validations
   validates :email, uniqueness: true
-  validates :name,  presence: true,  on: :update
-
-  with_options if: :new_password? do |user|
-    user.validates :password, length: { minimum: 8 }
-    user.validates :password, confirmation: true
-    user.validates :password_confirmation, presence: true
-  end
+  validates :email, presence: true, on: :create
+  validates :name,  presence: true
+  validates :password, presence: true, confirmation: true, length: { minimum: 8 }, if: :password
 
 
   # Callbacks
@@ -61,7 +57,7 @@ class User < ActiveRecord::Base
   def reactivate_account!
     return false unless activation_state == 'disabled'
     setup_activation && save!
-    UserMailer.account_reactivated_email(self).deliver
+    UserMailer.account_reactivated_email(self).deliver_later
   end
 
 

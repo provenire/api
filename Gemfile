@@ -22,8 +22,16 @@ group :doc do
 end
 
 
+# Test
+group :test do
+  gem 'factory_girl_rails'
+  gem 'faker'
+end
+
+
 # Development
 group :development do
+  gem 'pry'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'quiet_assets'
