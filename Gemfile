@@ -23,7 +23,7 @@ end
 
 
 # Test
-group :test do
+group :test, :development do
   gem 'factory_girl_rails'
   gem 'faker'
 end
