@@ -40,6 +40,16 @@ class Affiliation < ActiveRecord::Base
   end
 
 
+  # Revisions
+  has_paper_trail only: [:description,
+                         :person,
+                         :place,
+                         :title,
+                         :start_date,
+                         :end_date,
+                         :current]
+
+
   private
 
   # Helpers

@@ -51,6 +51,15 @@ class Event < ActiveRecord::Base
   end
 
 
+  # Revisions
+  has_paper_trail only: [:description,
+                         :date,
+                         :status,
+                         :price,
+                         :failed,
+                         :verb]
+
+
   # Helpers
   def subjects
     interactions.where(recipient: false).includes(:actor).map(&:try_actor)

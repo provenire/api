@@ -46,4 +46,18 @@ class Person < ActiveRecord::Base
   validates :gender,      presence: true
   validates :nationality, presence: true
 
+
+  # Revisions
+  has_paper_trail only: [:name,
+                         :description,
+                         :gender,
+                         :date_of_birth,
+                         :date_of_death,
+                         :nationality]
+
+
+  # Helpers
+  def picture
+    photos.first
+  end
 end

@@ -21,6 +21,7 @@ gem 'money-rails'
 gem 'citeproc'
 gem 'citeproc-ruby'
 gem 'csl-styles'
+gem 'paper_trail'
 
 
 # Docs

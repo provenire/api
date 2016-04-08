@@ -31,6 +31,13 @@ class Interaction < ActiveRecord::Base
   validates :unknown_actor, inclusion: { in: [true, false] }
 
 
+  # Revisions
+  has_paper_trail only: [:actor,
+                         :event,
+                         :recipient,
+                         :unknown_actor]
+
+
   # Helpers
   def try_actor
     unknown_actor ? OpenStruct.new(name: 'unknown') : actor

@@ -47,4 +47,16 @@ class Source < ActiveRecord::Base
   # after_create do |source|
   #   "process_#{kind}_job".camelize.constantize.perform_later(self)
   # end
+
+
+  # Revisions
+  has_paper_trail only: [:kind,
+                         :name,
+                         :description,
+                         :authors,
+                         :date_created,
+                         :attribution,
+                         :identifier,
+                         :image,
+                         :document]
 end

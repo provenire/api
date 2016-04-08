@@ -39,4 +39,15 @@ class Place < ActiveRecord::Base
 
   # Validations
   validates :name, presence: true
+
+
+  # Revisions
+  has_paper_trail only: [:name,
+                         :description]
+
+
+  # Helpers
+  def picture
+    photos.first
+  end
 end

@@ -44,4 +44,21 @@ class Artifact < ActiveRecord::Base
 
   # Validations
   validates :name, presence: true
+
+
+  # Revisions
+  has_paper_trail class_name: 'Version',
+                  only: [:name,
+                         :description,
+                         :alternate_names,
+                         :artist,
+                         :dimensions,
+                         :date_created,
+                         :group]
+
+
+  # Helpers
+  def picture
+    photos.first
+  end
 end
