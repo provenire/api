@@ -23,7 +23,11 @@
 class Person < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name
-  
+
+
+  # Associations
+  has_many :affiliations
+
 
   # Validations
   validates :name,        presence: true

@@ -21,6 +21,7 @@ class Page < ActiveRecord::Base
 
   # Associations
   belongs_to :source
+  has_many :affiliations
 
 
   # Validations
