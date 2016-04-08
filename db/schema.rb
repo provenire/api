@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407234739) do
+ActiveRecord::Schema.define(version: 20160408000532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 20160407234739) do
 
   add_index "artifacts", ["alternate_names"], name: "index_artifacts_on_alternate_names", using: :btree
   add_index "artifacts", ["group"], name: "index_artifacts_on_group", using: :btree
+
+  create_table "people", force: :cascade do |t|
+    t.string   "name",                              null: false
+    t.text     "description",   default: ""
+    t.string   "gender",        default: "unknown"
+    t.date     "date_of_birth"
+    t.date     "date_of_death"
+    t.string   "nationality",   default: "unknown"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                                            null: false
