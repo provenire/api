@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407204554) do
+ActiveRecord::Schema.define(version: 20160407234739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artifacts", force: :cascade do |t|
+    t.string   "name",                            null: false
+    t.text     "description",     default: ""
+    t.string   "alternate_names", default: [],    null: false, array: true
+    t.string   "artist"
+    t.string   "dimensions"
+    t.string   "date_created"
+    t.boolean  "group",           default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "artifacts", ["alternate_names"], name: "index_artifacts_on_alternate_names", using: :btree
+  add_index "artifacts", ["group"], name: "index_artifacts_on_group", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                                            null: false
