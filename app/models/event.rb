@@ -36,10 +36,24 @@ class Event < ActiveRecord::Base
   # Associations
   has_and_belongs_to_many :artifacts
 
+  has_many :interactions
+  has_many :people, through: :interactions, source: :actor, source_type: 'Person'
+  has_many :places, through: :interactions, source: :actor, source_type: 'Place'
+
 
   # Callbacks
   before_save do |model|
     model.name = format_name
+  end
+
+
+  # Helpers
+  def subjects
+    interactions.where(recipient: false).includes(:actor).map(&:try_actor)
+  end
+
+  def recipients
+    interactions.where(recipient: true).includes(:actor).map(&:try_actor)
   end
 
 

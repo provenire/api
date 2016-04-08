@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408020024) do
+ActiveRecord::Schema.define(version: 20160408021439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,21 @@ ActiveRecord::Schema.define(version: 20160408020024) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "interactions", force: :cascade do |t|
+    t.integer  "actor_id"
+    t.string   "actor_type"
+    t.integer  "event_id"
+    t.boolean  "recipient",     default: true,  null: false
+    t.boolean  "unknown_actor", default: false, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "interactions", ["actor_type", "actor_id"], name: "index_interactions_on_actor_type_and_actor_id", using: :btree
+  add_index "interactions", ["event_id"], name: "index_interactions_on_event_id", using: :btree
+  add_index "interactions", ["recipient"], name: "index_interactions_on_recipient", using: :btree
+  add_index "interactions", ["unknown_actor"], name: "index_interactions_on_unknown_actor", using: :btree
 
   create_table "pages", force: :cascade do |t|
     t.integer  "source_id"
