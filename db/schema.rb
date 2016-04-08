@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408021439) do
+ActiveRecord::Schema.define(version: 20160408022625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -207,5 +207,22 @@ ActiveRecord::Schema.define(version: 20160408021439) do
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", using: :btree
   add_index "users", ["uuid"], name: "index_users_on_uuid", unique: true, using: :btree
+
+  create_table "verbs", force: :cascade do |t|
+    t.string   "keyword",                                                     null: false
+    t.string   "action",                                                      null: false
+    t.string   "noun",                                                        null: false
+    t.string   "components",      default: ["date", "status", "description"], null: false, array: true
+    t.string   "subject_types",   default: ["people", "places"],              null: false, array: true
+    t.string   "recipient_types", default: ["people", "places"],              null: false, array: true
+    t.integer  "subject_limit"
+    t.integer  "recipient_limit"
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+  end
+
+  add_index "verbs", ["action"], name: "index_verbs_on_action", unique: true, using: :btree
+  add_index "verbs", ["keyword"], name: "index_verbs_on_keyword", unique: true, using: :btree
+  add_index "verbs", ["noun"], name: "index_verbs_on_noun", unique: true, using: :btree
 
 end

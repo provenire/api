@@ -27,8 +27,8 @@ class Interaction < ActiveRecord::Base
 
 
   # Validations
-  validates :recipient,     presence: true
-  validates :unknown_actor, presence: true
+  validates :recipient,     inclusion: { in: [true, false] }
+  validates :unknown_actor, inclusion: { in: [true, false] }
 
 
   # Helpers

@@ -35,6 +35,7 @@ class Event < ActiveRecord::Base
 
   # Associations
   has_and_belongs_to_many :artifacts
+  belongs_to :verb
 
   has_many :interactions
   has_many :people, through: :interactions, source: :actor, source_type: 'Person'

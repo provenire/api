@@ -27,5 +27,18 @@
 require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
+  test "should correctly format name" do
+    event = FactoryGirl.create(:event)
 
+    subject = FactoryGirl.create(:person)
+    recipient = FactoryGirl.create(:place)
+
+    subject_interaction = FactoryGirl.create(:interaction, event: event, actor: subject, unknown_actor: false, recipient: false)
+    recipient_interaction = FactoryGirl.create(:interaction, event: event, actor: recipient, unknown_actor: false, recipient: true)
+
+    event.price = 10
+    event.save
+
+    assert_equal "#{event.date.year} - #{event.verb.noun} by #{event.recipients.map(&:name).to_sentence}, via #{event.subjects.map(&:name).to_sentence}", event.name
+  end
 end

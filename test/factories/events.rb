@@ -26,6 +26,7 @@
 
 FactoryGirl.define do
   factory :event do
+    verb
     uuid        { SecureRandom.uuid }
     description { Faker::Lorem.paragraph }
     date        { Faker::Date.between(100.years.ago, Date.today) }
