@@ -41,6 +41,9 @@ class Event < ActiveRecord::Base
   has_many :people, through: :interactions, source: :actor, source_type: 'Person'
   has_many :places, through: :interactions, source: :actor, source_type: 'Place'
 
+  has_many :citations, as: :entry
+  has_many :sources, -> { uniq }, through: :citations
+
 
   # Callbacks
   before_save do |model|

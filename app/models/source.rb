@@ -35,6 +35,7 @@ class Source < ActiveRecord::Base
   # Associations
   has_many :pages, dependent: :destroy
   has_many :annotations, through: :pages
+  has_many :citations
 
 
   # Validations

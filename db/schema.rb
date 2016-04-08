@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408030016) do
+ActiveRecord::Schema.define(version: 20160408031635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,19 @@ ActiveRecord::Schema.define(version: 20160408030016) do
 
   add_index "artifacts_events", ["artifact_id", "event_id"], name: "index_artifacts_events_on_artifact_id_and_event_id", using: :btree
   add_index "artifacts_events", ["event_id", "artifact_id"], name: "index_artifacts_events_on_event_id_and_artifact_id", using: :btree
+
+  create_table "citations", force: :cascade do |t|
+    t.integer  "source_id"
+    t.integer  "entry_id"
+    t.string   "entry_type"
+    t.integer  "number"
+    t.string   "content",    default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "citations", ["entry_type", "entry_id"], name: "index_citations_on_entry_type_and_entry_id", using: :btree
+  add_index "citations", ["source_id"], name: "index_citations_on_source_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.uuid     "uuid",           default: "uuid_generate_v4()"
