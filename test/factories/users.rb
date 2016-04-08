@@ -40,6 +40,7 @@
 
 FactoryGirl.define do
   factory :user do
+    uuid  { SecureRandom.uuid }
     email { Faker::Internet.email }
     name  { Faker::Name.name }
     description { Faker::Lorem.paragraph }

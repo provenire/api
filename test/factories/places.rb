@@ -18,6 +18,7 @@
 
 FactoryGirl.define do
   factory :place do
+    uuid        { SecureRandom.uuid }
     name        { Faker::Company.name }
     description { Faker::Lorem.paragraph }
   end

@@ -27,6 +27,7 @@
 
 FactoryGirl.define do
   factory :source do
+    uuid         { SecureRandom.uuid }
     name         { Faker::Company.catch_phrase }
     description  { Faker::Lorem.paragraph }
     authors      { Faker::Name.name }

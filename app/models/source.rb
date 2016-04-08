@@ -28,7 +28,11 @@
 class Source < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name
-  
+
+
+  # Associations
+  has_many :pages, dependent: :destroy
+
 
   # Validations
   validates :name, presence: true

@@ -22,6 +22,7 @@
 
 FactoryGirl.define do
   factory :person do
+    uuid          { SecureRandom.uuid }
     name          { Faker::Name.name }
     description   { Faker::Lorem.paragraph }
     gender        { ['male', 'female', 'unknown'].sample }

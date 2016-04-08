@@ -25,6 +25,8 @@
 
 FactoryGirl.define do
   factory :artifact do
+    uuid            { SecureRandom.uuid }
+    
     name            { Faker::Commerce.product_name }
     description     { Faker::Lorem.paragraph }
 
