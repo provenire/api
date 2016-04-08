@@ -3,6 +3,8 @@
 # Table name: people
 #
 #  id            :integer          not null, primary key
+#  uuid          :uuid
+#  slug          :string           not null
 #  name          :string           not null
 #  description   :text             default("")
 #  gender        :string           default("unknown")
@@ -12,12 +14,20 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
+# Indexes
+#
+#  index_people_on_slug  (slug) UNIQUE
+#  index_people_on_uuid  (uuid) UNIQUE
+#
 
 class Person < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name
+  
 
   # Validations
   validates :name,        presence: true
   validates :gender,      presence: true
   validates :nationality, presence: true
-  
+
 end

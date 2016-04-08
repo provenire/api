@@ -15,6 +15,11 @@ gem 'jsonapi-resources'
 gem 'sorcery'
 
 
+# Misc
+gem 'friendly_id'
+gem 'money-rails'
+
+
 # Docs
 group :doc do
   gem 'sdoc', '~> 0.4.0'

@@ -6,6 +6,9 @@ class SorceryCore < ActiveRecord::Migration
       t.string :salt
 
       # Custom
+      t.string :slug, null: false
+      t.uuid   :uuid, default: "uuid_generate_v4()"
+
       t.string :name
       t.string :description
       t.string :company
@@ -16,5 +19,7 @@ class SorceryCore < ActiveRecord::Migration
     end
 
     add_index :users, :email, unique: true
+    add_index :users, :uuid,  unique: true
+    add_index :users, :slug,  unique: true
   end
 end

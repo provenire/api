@@ -3,6 +3,8 @@
 # Table name: sources
 #
 #  id           :integer          not null, primary key
+#  uuid         :uuid
+#  slug         :string           not null
 #  kind         :string           default("document"), not null
 #  name         :string           not null
 #  description  :text             default("")
@@ -19,6 +21,8 @@
 #  index_sources_on_attribution  (attribution)
 #  index_sources_on_authors      (authors)
 #  index_sources_on_kind         (kind)
+#  index_sources_on_slug         (slug) UNIQUE
+#  index_sources_on_uuid         (uuid) UNIQUE
 #
 
 require 'test_helper'

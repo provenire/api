@@ -6,6 +6,8 @@
 #  email                           :string           not null
 #  crypted_password                :string
 #  salt                            :string
+#  slug                            :string           not null
+#  uuid                            :uuid
 #  name                            :string
 #  description                     :string
 #  company                         :string
@@ -31,7 +33,9 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_remember_me_token     (remember_me_token)
 #  index_users_on_reset_password_token  (reset_password_token)
+#  index_users_on_slug                  (slug) UNIQUE
 #  index_users_on_unlock_token          (unlock_token)
+#  index_users_on_uuid                  (uuid) UNIQUE
 #
 
 require 'test_helper'

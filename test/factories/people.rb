@@ -3,6 +3,8 @@
 # Table name: people
 #
 #  id            :integer          not null, primary key
+#  uuid          :uuid
+#  slug          :string           not null
 #  name          :string           not null
 #  description   :text             default("")
 #  gender        :string           default("unknown")
@@ -11,6 +13,11 @@
 #  nationality   :string           default("unknown")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#
+# Indexes
+#
+#  index_people_on_slug  (slug) UNIQUE
+#  index_people_on_uuid  (uuid) UNIQUE
 #
 
 FactoryGirl.define do
