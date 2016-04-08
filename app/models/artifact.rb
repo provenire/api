@@ -26,10 +26,15 @@
 class Artifact < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name
-  
+
 
   # Associations
-  # ...
+  has_and_belongs_to_many :events, -> { order('date DESC NULLS LAST') }
+  has_many :annotations, as: :tagged
+
+  has_many :annotated_pages,                     through: :annotations,     source: :page
+  has_many :annotated_sources,                   through: :annotated_pages, source: :source
+  
 
   # Validations
   validates :name, presence: true

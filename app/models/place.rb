@@ -19,9 +19,21 @@
 class Place < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name
-  
+
+
+  # Associations
+  has_many :affiliations
+  has_many :interactions, as: :actor
+  has_many :events, -> { uniq.order('date DESC NULLS LAST') }, through: :interactions
+  has_many :annotations, as: :tagged
+
+  has_many :annotated_pages,                     through: :annotations,     source: :page
+  has_many :annotated_sources,                   through: :annotated_pages, source: :source
+
+  # hack central
+  has_many :source_events, -> { uniq }, through: :interactions,  source: :event
+
 
   # Validations
   validates :name, presence: true
-
 end

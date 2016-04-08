@@ -10,6 +10,7 @@ class CreateSources < ActiveRecord::Migration
       t.string :authors,      default: ''
       t.date   :date_created
       t.string :attribution,  default: ''
+      t.string :identifier
 
       # Files
       t.string :thumbnail
@@ -23,5 +24,6 @@ class CreateSources < ActiveRecord::Migration
     add_index :sources, :kind
     add_index :sources, :authors
     add_index :sources, :attribution
+    add_index :sources, :identifier
   end
 end

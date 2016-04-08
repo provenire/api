@@ -21,8 +21,7 @@ class Page < ActiveRecord::Base
 
   # Associations
   belongs_to :source
-  has_many :affiliations
-
+  has_many   :annotations, dependent: :destroy
 
   # Validations
   validates :number, presence: true

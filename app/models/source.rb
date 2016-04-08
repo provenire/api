@@ -11,6 +11,7 @@
 #  authors      :string           default("")
 #  date_created :date
 #  attribution  :string           default("")
+#  identifier   :string
 #  thumbnail    :string
 #  document     :string
 #  created_at   :datetime         not null
@@ -20,6 +21,7 @@
 #
 #  index_sources_on_attribution  (attribution)
 #  index_sources_on_authors      (authors)
+#  index_sources_on_identifier   (identifier)
 #  index_sources_on_kind         (kind)
 #  index_sources_on_slug         (slug) UNIQUE
 #  index_sources_on_uuid         (uuid) UNIQUE
@@ -32,6 +34,7 @@ class Source < ActiveRecord::Base
 
   # Associations
   has_many :pages, dependent: :destroy
+  has_many :annotations, through: :pages
 
 
   # Validations
