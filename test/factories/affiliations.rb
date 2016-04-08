@@ -29,7 +29,6 @@ FactoryGirl.define do
     person
     place
     uuid        { SecureRandom.uuid }
-    name        { "#{Faker::Name.name} with #{Faker::Company.name}" }
     description { Faker::Lorem.paragraph }
     title       { Faker::Company.profession }
     start_date  { Faker::Date.between(60.years.ago, Date.today) }

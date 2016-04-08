@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408012638) do
+ActiveRecord::Schema.define(version: 20160408020024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,34 @@ ActiveRecord::Schema.define(version: 20160408012638) do
   add_index "artifacts", ["group"], name: "index_artifacts_on_group", using: :btree
   add_index "artifacts", ["slug"], name: "index_artifacts_on_slug", unique: true, using: :btree
   add_index "artifacts", ["uuid"], name: "index_artifacts_on_uuid", unique: true, using: :btree
+
+  create_table "artifacts_events", id: false, force: :cascade do |t|
+    t.integer "artifact_id", null: false
+    t.integer "event_id",    null: false
+  end
+
+  add_index "artifacts_events", ["artifact_id", "event_id"], name: "index_artifacts_events_on_artifact_id_and_event_id", using: :btree
+  add_index "artifacts_events", ["event_id", "artifact_id"], name: "index_artifacts_events_on_event_id_and_artifact_id", using: :btree
+
+  create_table "events", force: :cascade do |t|
+    t.uuid     "uuid",           default: "uuid_generate_v4()"
+    t.string   "slug",                                          null: false
+    t.string   "name",                                          null: false
+    t.text     "description",    default: ""
+    t.date     "date"
+    t.string   "status"
+    t.boolean  "failed",         default: false,                null: false
+    t.integer  "verb_id"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.integer  "price_cents",    default: 0,                    null: false
+    t.string   "price_currency", default: "USD",                null: false
+  end
+
+  add_index "events", ["slug"], name: "index_events_on_slug", unique: true, using: :btree
+  add_index "events", ["status"], name: "index_events_on_status", using: :btree
+  add_index "events", ["uuid"], name: "index_events_on_uuid", unique: true, using: :btree
+  add_index "events", ["verb_id"], name: "index_events_on_verb_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
