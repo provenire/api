@@ -20,7 +20,7 @@
 FactoryGirl.define do
   factory :citation do
     source
-    association :entry, factory: [:artifact, :person, :place].sample
+    association :entry, factory: [:artifact, :person, :place, :event].sample
     number  { Faker::Number.between(1, 10) }
     content { Faker::Lorem.sentence }
   end

@@ -30,6 +30,7 @@
 FactoryGirl.define do
   factory :source do
     uuid         { SecureRandom.uuid }
+    kind         'photo' #{ ['document', 'photo', 'website'].sample }
     name         { Faker::Company.catch_phrase }
     description  { Faker::Lorem.paragraph }
     authors      { Faker::Name.name }
