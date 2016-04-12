@@ -12,10 +12,4 @@ class UserResource < JSONAPI::Resource
   def self.creatable_fields(context)
     super - [:role]
   end
-
-
-  # Callbacks
-  before_update do |user, context|
-    user.id == context[:current_user].id
-  end
 end

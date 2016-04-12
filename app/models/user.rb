@@ -50,7 +50,8 @@ class User < ActiveRecord::Base
   # Validations
   validates :email, uniqueness: true
   validates :email, presence: true, on: :create
-  validates :name,  presence: true
+  validates :name,  presence: true, on: :create
+  validates :name,  presence: true, on: :update, if: :password
   validates :password, presence: true, confirmation: true, length: { minimum: 8 }, if: :password
 
 

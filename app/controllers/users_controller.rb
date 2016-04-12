@@ -2,6 +2,12 @@ class UsersController < ApplicationController
   skip_before_action :authenticate, only: [:token_auth]
 
 
+  # Override
+  def update
+    can_update? ? super : unauthorized!
+  end
+
+
   # Handle Auth
   def token_auth
     user = authenticate_user!
@@ -34,5 +40,9 @@ class UsersController < ApplicationController
 
   def render_token(user)
     render json: { token: AuthToken.new(payload: { user_id: user.id, role: user.role }).token }, status: :created
+  end
+
+  def can_update?
+    params["id"] == current_user.id.to_s || current_user.admin?
   end
 end
