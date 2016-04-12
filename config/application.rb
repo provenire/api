@@ -23,5 +23,8 @@ module Api
     # Autoload extra paths
     config.autoload_paths << "#{Rails.root}/app/resources/concerns"
     config.autoload_paths << "#{Rails.root}/lib"
+
+    # ActiveJob
+    config.active_job.queue_adapter = :delayed_job
   end
 end
