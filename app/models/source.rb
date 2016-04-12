@@ -34,7 +34,7 @@ class Source < ActiveRecord::Base
 
   # Uploaders
   mount_uploader :document, DocumentUploader
-  # mount_uploader :image,    ImageUploader
+  mount_uploader :image,    ImageUploader
 
 
   # Associations
@@ -49,9 +49,9 @@ class Source < ActiveRecord::Base
 
 
   # Callbacks
-  # after_create do |source|
-  #   "process_#{kind}_job".camelize.constantize.perform_later(self)
-  # end
+  after_create do |source|
+    "process_#{kind}_job".camelize.constantize.perform_later(self)
+  end
 
 
   # Revisions

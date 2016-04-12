@@ -18,9 +18,15 @@ gem 'sorcery'
 gem 'jwt'
 
 
-# Misc
+# Resources
 gem 'friendly_id'
 gem 'money-rails'
+gem 'embedly'
+gem 'transloadit'
+gem 'rest-client'
+
+
+# Misc
 gem 'citeproc'
 gem 'citeproc-ruby'
 gem 'csl-styles'
@@ -30,6 +36,7 @@ gem 'paper_trail'
 # Files
 gem 'carrierwave'
 gem 'fog'
+gem 'cloudinary'
 
 
 # Docs
@@ -43,6 +50,7 @@ end
 group :test, :development do
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'dotenv-rails'
 end
 
 
@@ -52,7 +60,6 @@ group :development do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'quiet_assets'
-  gem 'dotenv-rails'
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'yaml_db'
