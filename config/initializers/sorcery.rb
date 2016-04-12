@@ -384,7 +384,7 @@ Rails.application.config.sorcery.configure do |config|
     # How long the user should be banned. in seconds. 0 for permanent.
     # Default: `60 * 60`
     #
-    # user.login_lock_time_period =
+    user.login_lock_time_period = 5 * 60
 
     # Unlock token attribute name
     # Default: `:unlock_token`
@@ -460,4 +460,17 @@ Rails.application.config.sorcery.configure do |config|
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
   config.user_class = "User"
+end
+
+
+# DelayedJob email sending
+module Sorcery
+  module Model
+    module InstanceMethods
+      def generic_send_email(method, mailer)
+        config = sorcery_config
+        mail = config.send(mailer).delay.send(config.send(method), self)
+      end
+    end
+  end
 end
