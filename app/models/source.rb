@@ -48,10 +48,8 @@ class Source < ActiveRecord::Base
   validates :kind, presence: true
 
 
-  # Callbacks
-  after_create do |source|
-    "process_#{kind}_job".camelize.constantize.perform_later(self)
-  end
+  # Init Callbacks
+  after_create :process_job
 
 
   # Revisions
@@ -64,4 +62,13 @@ class Source < ActiveRecord::Base
                          :identifier,
                          :image,
                          :document]
+
+
+  private
+
+
+  # Callback Functions
+  def process_job
+    "process_#{kind}_job".camelize.constantize.perform_later(self)
+  end
 end

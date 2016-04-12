@@ -6,4 +6,10 @@ require 'pry'
 class ActiveSupport::TestCase
   Faker::Config.locale = 'en-US'
   FactoryGirl.lint
+
+  Delayed::Worker.delay_jobs = false
+
+
+  # TODO: Remove this
+  Source.skip_callback(:create, :after, :process_job)
 end
