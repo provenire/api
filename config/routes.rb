@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  # Auth
+  post '/users/token_auth', to: 'users#token_auth'
+  post '/users/token_refresh', to: 'users#token_refresh'
+
 
   # API
   jsonapi_resources :affiliations

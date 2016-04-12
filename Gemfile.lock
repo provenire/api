@@ -141,6 +141,7 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     railroady (1.4.2)
@@ -223,6 +224,7 @@ DEPENDENCIES
   faker
   friendly_id
   jsonapi-resources
+  jwt
   letter_opener
   letter_opener_web
   money-rails
@@ -232,6 +234,7 @@ DEPENDENCIES
   pry-rails
   puma
   quiet_assets
+  rack-cors
   railroady
   rails (= 4.2.6)
   rails_12factor

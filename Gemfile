@@ -9,10 +9,12 @@ gem 'puma'
 
 # API
 gem 'jsonapi-resources'
+gem 'rack-cors'
 
 
-# Authentication
+# Auth
 gem 'sorcery'
+gem 'jwt'
 
 
 # Misc

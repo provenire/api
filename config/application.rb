@@ -22,5 +22,6 @@ module Api
 
     # Autoload extra paths
     config.autoload_paths << "#{Rails.root}/app/resources/concerns"
+    config.autoload_paths << "#{Rails.root}/lib"
   end
 end
