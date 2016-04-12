@@ -32,6 +32,11 @@ class Source < ActiveRecord::Base
   friendly_id :name
 
 
+  # Uploaders
+  mount_uploader :document, DocumentUploader
+  # mount_uploader :image,    ImageUploader
+
+
   # Associations
   has_many :pages, dependent: :destroy
   has_many :annotations, through: :pages

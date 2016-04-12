@@ -27,6 +27,11 @@ gem 'csl-styles'
 gem 'paper_trail'
 
 
+# Files
+gem 'carrierwave'
+gem 'fog'
+
+
 # Docs
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -47,7 +52,6 @@ group :development do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'quiet_assets'
-  gem 'dotenv'
   gem 'dotenv-rails'
   gem 'letter_opener'
   gem 'letter_opener_web'
