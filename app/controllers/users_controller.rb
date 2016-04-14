@@ -39,7 +39,8 @@ class UsersController < ApplicationController
   end
 
   def render_token(user)
-    render json: { token: AuthToken.new(payload: { user_id: user.id, role: user.role }).token }, status: :created
+    payload = { user_id: user.id, role: user.role }
+    render json: { token: AuthToken.new(payload: payload).token }.merge(payload), status: :created
   end
 
   def can_update?
