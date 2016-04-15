@@ -61,4 +61,8 @@ class Artifact < ActiveRecord::Base
   def picture
     photos.first
   end
+
+  def picture_id
+    picture.id
+  end
 end

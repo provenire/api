@@ -3,6 +3,10 @@ class SourceResource < JSONAPI::Resource
 
   attributes :authors, :date_created, :attribution, :identifier, :image, :document
 
+  def image
+    @model.image.versions.map{|k,v| [k, v.url] }.to_h
+  end
+
 
   # Attribute Modifiers
   def self.updatable_fields(context)

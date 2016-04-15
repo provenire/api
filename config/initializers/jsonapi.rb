@@ -32,7 +32,7 @@ JSONAPI.configure do |config|
   config.maximum_page_size = 20
 
   # Output the record count in top level meta data for find operations
-  config.top_level_meta_include_record_count = false
+  config.top_level_meta_include_record_count = true
   config.top_level_meta_record_count_key = :record_count
 
   config.use_text_errors = false

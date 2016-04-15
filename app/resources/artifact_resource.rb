@@ -10,5 +10,5 @@ class ArtifactResource < JSONAPI::Resource
   has_many :photos, class_name: 'Source'
   has_many :citations
   has_many :sources
-  has_one  :picture, class_name: 'Source', foreign_key: 'picture'
+  has_one  :picture, class_name: 'Source'
 end
