@@ -208,7 +208,7 @@ ActiveRecord::Schema.define(version: 20160412063445) do
     t.date     "date_created"
     t.string   "attribution",  default: ""
     t.string   "identifier"
-    t.string   "thumbnail"
+    t.string   "image"
     t.string   "document"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
@@ -232,6 +232,7 @@ ActiveRecord::Schema.define(version: 20160412063445) do
     t.string   "company"
     t.string   "location"
     t.string   "role",                            default: "user"
+    t.integer  "login_count",                     default: 0,                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "activation_state"
@@ -245,10 +246,15 @@ ActiveRecord::Schema.define(version: 20160412063445) do
     t.integer  "failed_logins_count",             default: 0
     t.datetime "lock_expires_at"
     t.string   "unlock_token"
+    t.datetime "last_login_at"
+    t.datetime "last_logout_at"
+    t.datetime "last_activity_at"
+    t.string   "last_login_from_ip_address"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
@@ -286,8 +292,8 @@ ActiveRecord::Schema.define(version: 20160412063445) do
     t.integer  "item_id",                     null: false
     t.string   "event",                       null: false
     t.string   "whodunnit"
-    t.json     "object"
-    t.json     "object_changes"
+    t.text     "object"
+    t.text     "object_changes"
     t.string   "ip_address"
     t.string   "user_agent"
     t.string   "comment",        default: ""

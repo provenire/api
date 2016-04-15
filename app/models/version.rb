@@ -7,8 +7,8 @@
 #  item_id        :integer          not null
 #  event          :string           not null
 #  whodunnit      :string
-#  object         :json
-#  object_changes :json
+#  object         :text
+#  object_changes :text
 #  ip_address     :string
 #  user_agent     :string
 #  comment        :string           default("")

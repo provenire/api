@@ -13,7 +13,7 @@ class CreateSources < ActiveRecord::Migration
       t.string :identifier
 
       # Files
-      t.string :thumbnail
+      t.string :image
       t.string :document
 
       t.timestamps null: false

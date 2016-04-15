@@ -1,16 +1,16 @@
 class SourceResource < JSONAPI::Resource
   include StandardResource
 
-  attributes :authors, :date_created, :attribution, :identifier, :thumbnail, :document
+  attributes :authors, :date_created, :attribution, :identifier, :image, :document
 
 
   # Attribute Modifiers
   def self.updatable_fields(context)
-    super - [:identifier, :thumbnail, :document]
+    super - [:identifier, :image, :document]
   end
 
   def self.creatable_fields(context)
-    super - [:identifier, :thumbnail, :document]
+    super - [:identifier, :image, :document]
   end
 
 

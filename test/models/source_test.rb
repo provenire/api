@@ -12,7 +12,7 @@
 #  date_created :date
 #  attribution  :string           default("")
 #  identifier   :string
-#  thumbnail    :string
+#  image        :string
 #  document     :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null

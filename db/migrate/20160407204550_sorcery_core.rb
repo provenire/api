@@ -15,6 +15,8 @@ class SorceryCore < ActiveRecord::Migration
       t.string :location
       t.string :role, default: 'user'
 
+      t.integer :login_count, default: 0, null: false
+      
       t.timestamps
     end
 

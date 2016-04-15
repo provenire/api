@@ -5,8 +5,8 @@ class CreateVersions < ActiveRecord::Migration
       t.integer  :item_id,   :null => false
       t.string   :event,     :null => false
       t.string   :whodunnit
-      t.json     :object
-      t.json     :object_changes
+      t.text     :object
+      t.text     :object_changes
       t.string   :ip_address
       t.string   :user_agent
       t.string   :comment, default: ''
