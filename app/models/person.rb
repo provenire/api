@@ -13,6 +13,7 @@
 #  nationality   :string           default("unknown")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  picture_id    :integer
 #
 # Indexes
 #
@@ -33,7 +34,9 @@ class Person < ActiveRecord::Base
 
   has_many :annotated_pages,                     through: :annotations,     source: :page
   has_many :annotated_sources,                   through: :annotated_pages, source: :source
+
   has_many :photos, -> { where(kind: 'photo') }, through: :annotated_pages, source: :source
+  belongs_to :picture, class_name: 'Source'
 
   # hack central
   has_many :source_events, -> { uniq }, through: :interactions,  source: :event
@@ -54,14 +57,4 @@ class Person < ActiveRecord::Base
                          :date_of_birth,
                          :date_of_death,
                          :nationality]
-
-
-  # Helpers
-  def picture
-    photos.first
-  end
-
-  def picture_id
-    picture.id
-  end
 end

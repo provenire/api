@@ -14,6 +14,7 @@
 #  group           :boolean          default("false")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  picture_id      :integer
 #
 # Indexes
 #
@@ -36,6 +37,7 @@ class Artifact < ActiveRecord::Base
   has_many :annotated_sources,                   through: :annotated_pages, source: :source
 
   has_many :photos, -> { where(kind: 'photo') }, through: :annotated_pages, source: :source
+  belongs_to :picture, class_name: 'Source'
 
   # hack central
   has_many :citations, through: :events
@@ -55,14 +57,4 @@ class Artifact < ActiveRecord::Base
                          :dimensions,
                          :date_created,
                          :group]
-
-
-  # Helpers
-  def picture
-    photos.first
-  end
-
-  def picture_id
-    picture.id
-  end
 end

@@ -13,6 +13,7 @@
 #  nationality   :string           default("unknown")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  picture_id    :integer
 #
 # Indexes
 #
