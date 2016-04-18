@@ -15,4 +15,5 @@
 
 # Misc
 .env
+.env.*
 .DS_Store
