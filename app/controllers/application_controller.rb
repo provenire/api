@@ -40,8 +40,20 @@ class ApplicationController < ActionController::Base
   end
 
 
+  # Error response
+  def render_error!(details: "Bad Request", title: "Bad Request", status: :bad_request)
+    render json: {
+      errors: [{
+        status: Rack::Utils.status_code(status),
+        title: title,
+        details: details
+      }]
+    }, status: status
+  end
+
+
   # Unauthorized request
-  def unauthorized!
-    render json: { errors: [{ status: 401, title: "Unauthorized", details: "Invalid credentials" }] }, status: :unauthorized
+  def render_unauthorized!
+    render_error!(details: "Invalid credentials", title: "Unauthorized", status: :unauthorized)
   end
 end

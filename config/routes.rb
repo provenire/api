@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  # Auth
-  post '/users/token_auth', to: 'users#token_auth'
-  post '/users/token_refresh', to: 'users#token_refresh'
+  # Auth / Forgot Password
+  post  '/users/token_auth',      to: 'users#token_auth'
+  post  '/users/token_refresh',   to: 'users#token_refresh'
+  post  '/users/forgot_password', to: 'users#forgot_password'
+  patch '/users/reset_password',  to: 'users#reset_password'
 
 
   # API
