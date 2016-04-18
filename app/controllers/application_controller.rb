@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   # Authenticate
   def authenticate
-    unauthorized! unless current_user
+    render_unauthorized! unless current_user
   end
 
 

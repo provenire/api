@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
     setup_activation && save!
     UserMailer.account_reactivated_email(self).deliver_later
   end
-
+  
 
   private
 
