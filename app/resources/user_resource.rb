@@ -1,5 +1,6 @@
 class UserResource < JSONAPI::Resource
   include StandardResource
+
   attributes :email, :company, :location, :role, :password, :password_confirmation
 
 

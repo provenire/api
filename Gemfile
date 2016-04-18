@@ -16,6 +16,7 @@ gem 'rack-cors'
 # Auth
 gem 'sorcery'
 gem 'jwt'
+gem 'cancancan'
 
 
 # Resources
