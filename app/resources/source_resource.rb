@@ -7,6 +7,10 @@ class SourceResource < JSONAPI::Resource
     @model.image.versions.map{|k,v| [k, v.url] }.to_h
   end
 
+  def document
+    @model.document.url
+  end
+
 
   # Attribute Modifiers
   def self.updatable_fields(context)
