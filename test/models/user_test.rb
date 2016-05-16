@@ -93,7 +93,7 @@ class UserTest < ActiveSupport::TestCase
     user = FactoryGirl.create(:user)
     email = ActionMailer::Base.deliveries.last
 
-    assert_equal "You have been invited to join Antiquarium", email.subject
+    assert_equal "You have been invited to join Provenire", email.subject
     assert_equal [user.email], email.to
     assert_match /\/register\?token=#{user.activation_token}/, email.text_part.to_s
   end
@@ -109,7 +109,7 @@ class UserTest < ActiveSupport::TestCase
 
     email = ActionMailer::Base.deliveries.last
 
-    assert_equal "Your Antiquarium account has been reactivated", email.subject
+    assert_equal "Your Provenire account has been reactivated", email.subject
     assert_equal [user.email], email.to
     assert_match /\/register\?token=#{user.activation_token}/, email.text_part.to_s
   end

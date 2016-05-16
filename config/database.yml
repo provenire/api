@@ -1,4 +1,4 @@
-# Antiquarium API
+# Provenire API
 #
 default: &default
   adapter: postgresql
@@ -7,11 +7,11 @@ default: &default
 
 development:
   <<: *default
-  database: antiquarium_api_development
+  database: provenire_api_development
 
 test:
   <<: *default
-  database: antiquarium_api_test
+  database: provenire_api_test
 
 production:
   url: <%= ENV['DATABASE_URL'] %>

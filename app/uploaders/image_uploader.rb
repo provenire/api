@@ -2,7 +2,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
   process convert: 'jpg'
-  process tags: ['antiquarium', 'page']
+  process tags: ['provenire', 'page']
 
   version :large do
     process eager: true
